@@ -28,8 +28,15 @@ class Login extends Component
         if (Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember_me)) {
             return $this->redirect('/', navigate: true);
         } else {
-            $this->addError('email', 'Invalid email or password.');
+
+            $this->dispatch('alert',
+                type: 'error',
+                title: 'Login Gagal.',
+                position: 'center',
+            );
+            $this->addError('login_error', 'Username atau Password Salah');
         }
+
     }
 
 }

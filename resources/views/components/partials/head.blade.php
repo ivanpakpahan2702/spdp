@@ -27,6 +27,12 @@
 <link href="{{ asset('assets/NiceAdmin/assets/css/style.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/CSS/animation/style.css') }}">
 
+<!-- Jquery -->
+<script data-navigate-once src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Sweet Alert -->
+<script data-navigate-once src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- =======================================================
 * Template Name: NiceAdmin
 * Updated: Jan 29 2024 with Bootstrap v5.3.2

@@ -93,13 +93,7 @@
             <hr class="dropdown-divider">
           </li>
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <i class="bi bi-box-arrow-right"></i>
-              <form action="/logout" method="GET">
-                @csrf
-                <input type="submit" value="Keluar">
-              </form>
-            </a>
+            <livewire:auth.logout />
           </li>
         </ul>
         <!-- End Profile Dropdown Items -->

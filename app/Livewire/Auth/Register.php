@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Title;
@@ -39,6 +40,7 @@ class Register extends Component
             'password' => Hash::make($this->password),
             'foto_profil' => 'default_user.png',
         ]);
+        event(new Registered($user));
         Auth::login($user);
         return $this->redirect('/', navigate: true);
 

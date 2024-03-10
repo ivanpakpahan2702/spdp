@@ -2,14 +2,21 @@
 
 namespace App\Livewire\Auth;
 
-use Livewire\Attributes\Title;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Logout extends Component
 {
-    #[Title('Logout')]
     public function render()
     {
         return view('livewire.auth.logout');
+    }
+
+    public function logout()
+    {
+        session()->invalidate();
+        session()->regenerate();
+        Auth::logout();
+        return $this->redirect('/login', navigate: true);
     }
 }

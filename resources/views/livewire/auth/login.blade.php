@@ -16,7 +16,12 @@
                   <h5 class="card-title text-center pb-0 fs-4">Masuk Dengan Akun Anda</h5>
                   <p class="text-center small">Masukkan Username & Password</p>
                 </div>
-
+                @error('login_error')
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @enderror
                 <form class="row g-3" wire:submit.prevent="login">
                   <div class="col-12">
                     <label for="yourUsername" class="form-label">Username</label>
@@ -65,4 +70,17 @@
       </div>
     </section>
   </div>
+  <script>
+    document.addEventListener("livewire:init", () => {
+      Livewire.on("alert", (event) => {
+        Swal.fire({
+          position: event.position,
+          icon: event.type,
+          title: event.title,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      });
+    });
+  </script>
 </main>
