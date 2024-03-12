@@ -1,7 +1,7 @@
 <main id="main" class="main">
   <div>
     <div class="pagetitle pb-5">
-      <h1>Dashboard</h1>
+      <h1>Beranda</h1>
     </div>
     <!-- End Page Title -->
     <div class="card p-4">
