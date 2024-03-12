@@ -13,8 +13,8 @@
             <div class="card mb-3">
               <div class="card-body">
                 <div class="pt-4 pb-2">
-                  <h5 class="card-title text-center pb-0 fs-4">Masuk Dengan Akun Anda</h5>
-                  <p class="text-center small">Masukkan Username & Password</p>
+                  <h5 class="card-title text-center pb-0 fs-4">Login</h5>
+                  <p class="text-center small">Masukkan Email & Password</p>
                 </div>
                 @error('login_error')
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -24,12 +24,12 @@
                 @enderror
                 <form class="row g-3" wire:submit.prevent="login">
                   <div class="col-12">
-                    <label for="yourUsername" class="form-label">Username</label>
+                    <label for="yourEmail" class="form-label">Email</label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
-                      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
-                        id="yourUsername" value="{{ old('username') }}" wire:model="username">
-                      @error('username')
+                      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
+                        id="yourEmail" value="{{ old('email') }}" wire:model="email">
+                      @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
@@ -41,6 +41,9 @@
                     @error('password')
                       <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
+                  </div>
+                  <div class="col-12 text-end">
+                    <a href="/forgot-password" style="font-size: 12px" wire:navigate>lupa password</a>
                   </div>
                   <div class="col-12">
                     <div class="form-check">
@@ -70,7 +73,7 @@
       </div>
     </section>
   </div>
-  <script>
+  <script data-navigate-once>
     document.addEventListener("livewire:init", () => {
       Livewire.on("alert", (event) => {
         Swal.fire({

@@ -21,9 +21,6 @@ class Register extends Component
     #[Validate('required|max:50')]
     public $nama = '';
 
-    #[Validate('required|max:20|unique:users')]
-    public $username = '';
-
     #[Validate('required|unique:users')]
     public $email = '';
 
@@ -35,7 +32,6 @@ class Register extends Component
         $this->validate();
         $user = User::create([
             'nama' => $this->nama,
-            'username' => $this->username,
             'email' => $this->email,
             'password' => Hash::make($this->password),
             'foto_profil' => 'default_user.png',

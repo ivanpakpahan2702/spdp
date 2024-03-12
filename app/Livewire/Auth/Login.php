@@ -15,17 +15,17 @@ class Login extends Component
         return view('livewire.auth.login');
     }
 
-    public $username, $password, $remember_me;
+    public $email, $password, $remember_me;
 
     public function login()
     {
 
         $validatedDate = $this->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt(['username' => $this->username, 'password' => $this->password], $this->remember_me)) {
+        if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             return $this->redirect('/', navigate: true);
         } else {
 
@@ -34,7 +34,7 @@ class Login extends Component
                 title: 'Login Gagal.',
                 position: 'center',
             );
-            $this->addError('login_error', 'Username atau Password Salah');
+            $this->addError('login_error', 'Email atau Password Salah');
         }
 
     }

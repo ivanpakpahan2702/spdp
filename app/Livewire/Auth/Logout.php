@@ -19,4 +19,12 @@ class Logout extends Component
         Auth::logout();
         return $this->redirect('/login', navigate: true);
     }
+
+    public function login_forced()
+    {
+        session()->invalidate();
+        session()->regenerate();
+        Auth::logout();
+        return redirect('/login');
+    }
 }

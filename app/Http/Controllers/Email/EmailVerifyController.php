@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Authentication;
+namespace App\Http\Controllers\Email;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -16,7 +16,7 @@ class EmailVerifyController extends Controller
      */
     public function index()
     {
-        return view('authentication.verify-email', ['title' => 'Verifikasi Email']);
+        return view('email.verify-email');
     }
 
     public function handle(EmailVerificationRequest $request)
@@ -28,6 +28,6 @@ class EmailVerifyController extends Controller
     public function resend(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Link verifikasi telah dikirim!');
+        return response()->json(['message' => 'berhasil mengirim ulang verifikasi email']);
     }
 }
