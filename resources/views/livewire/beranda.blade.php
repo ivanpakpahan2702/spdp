@@ -5,11 +5,16 @@
     </div>
     <!-- End Page Title -->
     <div class="card p-4">
-      @if (session('Success-Register'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <strong>Hello !</strong> {{ session('Success-Register') }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+      @if (session('success-verify'))
+        <script>
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Notifikasi',
+            text: 'Selamat datang {{ auth()->user()->nama }}, Anda berhasil melakukan verifikasi',
+            showConfirmButton: true,
+          });
+        </script>
       @endif
       <h4>SPDP PN-TAIS (SISTEM PENGELOLAAN DATA PEGAWAI)</h4>
     </div>

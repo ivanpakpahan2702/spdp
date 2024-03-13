@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Email;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmailVerifyController extends Controller
 {
@@ -22,7 +23,7 @@ class EmailVerifyController extends Controller
     public function handle(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect('/');
+        return redirect('/')->with('success-verify', 'success');
     }
 
     public function resend(Request $request)

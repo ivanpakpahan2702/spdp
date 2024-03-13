@@ -53,29 +53,20 @@
         <!-- Start Profile Image Icon -->
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="{{ asset('assets/NiceAdmin/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">Kuswandi Pakpahan</span>
+          <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama }}</span>
         </a>
         <!-- End Profile Image Icon -->
         <!-- Start Profile Dropdown Items -->
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
-            <h6>Kuswandi Pakpahan</h6>
+            <h6>{{ auth()->user()->nama }}</h6>
             <span>Ketua PN-Tais</span>
           </li>
           <li>
             <hr class="dropdown-divider">
           </li>
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-              <i class="bi bi-person"></i>
-              <span>Profil</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+            <a class="dropdown-item d-flex align-items-center" href="/pengaturan-akun" wire:navigate>
               <i class="bi bi-gear"></i>
               <span>Pengaturan Akun</span>
             </a>

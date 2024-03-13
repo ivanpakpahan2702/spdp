@@ -6,6 +6,7 @@ use App\Livewire\Auth\Logout;
 use App\Livewire\Auth\Register;
 use App\Livewire\Beranda;
 use App\Livewire\Pass\ForgotPass;
+use App\Livewire\Profile\Setting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,6 @@ Route::get('/forgot-password', [ForgotPass::class, 'index'])->middleware('guest'
 Route::post('/forgot-password', [ForgotPass::class, 'sending'])->middleware('guest')->name('password.email');
 Route::get('/reset-password/{token}', [ForgotPass::class, 'handle'])->middleware('guest')->name('password.reset');
 Route::post('/reset-password', [ForgotPass::class, 'update'])->middleware('guest')->name('password.update');
+
+// Profile
+Route::get('/pengaturan-akun', Setting::class)->name('settings')->middleware('auth');
