@@ -25,6 +25,10 @@ return new class extends Migration
             $table->string('jenis_kelamin')->nullable();
             $table->string('agama')->nullable();
             $table->string('no_hp')->nullable();
+            $table->string('insta')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('facebook')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

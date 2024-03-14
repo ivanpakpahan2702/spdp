@@ -52,7 +52,8 @@
       <li class="nav-item dropdown pe-3">
         <!-- Start Profile Image Icon -->
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="{{ asset('assets/NiceAdmin/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
+          <img src='{{ asset('assets/Images/profil/' . auth()->user()->foto_profil) }}' alt="Profile"
+            class="rounded-circle">
           <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama }}</span>
         </a>
         <!-- End Profile Image Icon -->
@@ -60,7 +61,7 @@
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
             <h6>{{ auth()->user()->nama }}</h6>
-            <span>Ketua PN-Tais</span>
+            <span>{{ auth()->user()->jabatan ?? 'Jabatan belum diisi' }}</span>
           </li>
           <li>
             <hr class="dropdown-divider">
