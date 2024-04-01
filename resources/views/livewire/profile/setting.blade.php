@@ -87,7 +87,8 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Tanggal Lahir</div>
-                      <div class="col-lg-9 col-md-8">{{ auth()->user()->tanggal_lahir ?? 'Data tidak tersedia.' }}
+                      <div class="col-lg-9 col-md-8">
+                        {{ auth()->user()->tanggal_lahir === null ? 'Data tidak tersedia.' : date('d-m-Y', strtotime(auth()->user()->tanggal_lahir)) }}
                       </div>
                     </div>
                     <div class="row">
@@ -126,121 +127,186 @@
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                        <label for="deskripsi" class="col-md-4 col-lg-3 col-form-label">Deskripsi</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="fullName" type="text" class="form-control" id="fullName"
-                            value="Kevin Anderson">
+                          <textarea wire:model="deskripsi" name="deskripsi" class="form-control" id="deskripsi" style="height: 100px">{{ old('deskripsi') ?? auth()->user()->deskripsi }}</textarea>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                        <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                         <div class="col-md-8 col-lg-9">
-                          <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                          <input name="nama" type="text"
+                            class="form-control  @error('nama') is-invalid @enderror" id="nama"
+                            value="{{ old('nama') ?? auth()->user()->nama }}" wire:model="nama">
+                          @error('nama')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                          @enderror
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                        <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="company" type="text" class="form-control" id="company"
-                            value="Lueilwitz, Wisoky and Leuschke">
+                          <input name="email" type="email"
+                            class="form-control @error('email') is-invalid @enderror" id="email"
+                            value="{{ old('email') ?? auth()->user()->email }}" wire:model="email">
+                          @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                          @enderror
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                        <label for="nip" class="col-md-4 col-lg-3 col-form-label">NIP</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="job" type="text" class="form-control" id="Job"
-                            value="Web Designer">
+                          <input name="nip" type="text" class="form-control" id="nip"
+                            value="{{ old('nip') ?? auth()->user()->nip }}" wire:model="nip">
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                        <label for="jabatan" class="col-md-4 col-lg-3 col-form-label">Jabatan</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="country" type="text" class="form-control" id="Country" value="USA">
+                          <input name="jabatan" type="text" class="form-control" id="jabatan"
+                            value="{{ old('jabatan') ?? auth()->user()->jabatan }}" wire:model="jabatan">
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                        <label for="tempat_lahir" class="col-md-4 col-lg-3 col-form-label">Tempat Lahir</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="address" type="text" class="form-control" id="Address"
-                            value="A108 Adam Street, New York, NY 535022">
+                          <input name="tempat_lahir" type="text" class="form-control" id="tempat_lahir"
+                            value="{{ old('tempat_lahir') ?? auth()->user()->tempat_lahir }}"
+                            wire:model="tempat_lahir">
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                        <label for="tanggal_lahir" class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="phone" type="text" class="form-control" id="Phone"
-                            value="(436) 486-3538 x29071">
+                          <input name="tanggal_lahir" type="date" class="form-control" id="tanggal_lahir"
+                            value="{{ old('tanggal_lahir') ?? auth()->user()->tanggal_lahir }}"
+                            wire:model="tanggal_lahir">
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                        <label for="no_hp" class="col-md-4 col-lg-3 col-form-label">Nomor Ponsel</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="email" type="email" class="form-control" id="Email"
-                            value="k.anderson@example.com">
+                          <input name="no_hp" type="text" class="form-control" id="no_hp"
+                            value="{{ old('no_hp') ?? auth()->user()->no_hp }}" wire:model="nomor_hp">
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
+                        <label for="jenis_kelamin" class="col-md-4 col-lg-3 col-form-label">Gender</label>
+                        <div class="col-md-8 col-lg-9">
+                          <select name="jenis_kelamin" id="jenis_kelamin" class="form-select"
+                            aria-label="Default select example" wire:model="jenis_kelamin">
+                            <option value="">--Pilih Gender--</option>
+                            <option value="Pria" {{ auth()->user()->jenis_kelamin == 'Pria' ? 'Selected' : '' }}>
+                              Pria
+                            </option>
+                            <option value="Wanita" {{ auth()->user()->jenis_kelamin == 'Wanita' ? 'Selected' : '' }}>
+                              Wanita
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="agama" class="col-md-4 col-lg-3 col-form-label">Agama</label>
+                        <div class="col-md-8 col-lg-9">
+                          <select name="agama" id="agama" class="form-select"
+                            aria-label="Default select example" wire:model="agama">
+                            <option value="">--Pilih Kepercayaan--</option>
+                            <option value="Islam" {{ auth()->user()->agama == 'Islam' ? 'Selected' : '' }}>
+                              Islam
+                            </option>
+                            <option value="Kristen Protestan"
+                              {{ auth()->user()->agama == 'Kristen Protestan' ? 'Selected' : '' }}>
+                              Kristen Protestan
+                            </option>
+                            <option value="Kristen Katolik"
+                              {{ auth()->user()->agama == 'Kristen Katolik' ? 'Selected' : '' }}>
+                              Kristen Katolik
+                            </option>
+                            <option value="Hindu" {{ auth()->user()->agama == 'Hindu' ? 'Selected' : '' }}>
+                              Hindu
+                            </option>
+                            <option value="Buddha" {{ auth()->user()->agama == 'Buddha' ? 'Selected' : '' }}>
+                              Buddha
+                            </option>
+                            <option value="Konghucu" {{ auth()->user()->agama == 'Konghucu' ? 'Selected' : '' }}>
+                              Konghucu
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
+                        <div class="col-md-8 col-lg-9">
+                          <textarea wire:model="alamat" name="alamat" class="form-control" id="alamat" style="height: 100px">{{ old('alamat') ?? auth()->user()->alamat }}</textarea>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Link Twitter</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="twitter" type="text" class="form-control" id="Twitter"
-                            value="https://twitter.com/#">
+                            value="{{ old('twitter') ?? auth()->user()->twitter }}" wire:model='twitter'>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
+                        <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Link Facebook</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="facebook" type="text" class="form-control" id="Facebook"
-                            value="https://facebook.com/#">
+                            value="{{ old('facebook') ?? auth()->user()->facebook }}" wire:model='facebook'>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
+                        <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Link Instagram</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="instagram" type="text" class="form-control" id="Instagram"
-                            value="https://instagram.com/#">
+                          <input name="insta" type="text" class="form-control" id="Instagram"
+                            value="{{ old('insta') ?? auth()->user()->insta }}" wire:model='insta'>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+                        <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Link Linkedin</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="linkedin" type="text" class="form-control" id="Linkedin"
-                            value="https://linkedin.com/#">
+                            value="{{ old('linkedin') ?? auth()->user()->linkedin }}" wire:model='linkedin'>
                         </div>
                       </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                       </div>
-                    </form><!-- End Profile Edit Form -->
+                    </form>
+                    <!-- End Profile Edit Form -->
                   </div>
-
+                  <!-- ============================= Change Password Form ====================================== -->
                   <div class="tab-pane fade pt-3" id="profile-change-password">
-                    <!-- Change Password Form -->
+
                     <form>
                       <div class="row mb-3">
-                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Saat
+                          Ini</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="password" type="password" class="form-control" id="currentPassword">
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password Baru</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="newpassword" type="password" class="form-control" id="newPassword">
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
-                          Password</label>
+                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Masukkan Password Baru
+                          Sekali Lagi</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="renewpassword" type="password" class="form-control" id="renewPassword">
                         </div>
                       </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Change Password</button>
+                        <button type="submit" class="btn btn-primary">Ganti Password</button>
                       </div>
-                    </form><!-- End Change Password Form -->
+                    </form>
+                    <!-- End Change Password Form -->
                   </div>
-                </div><!-- End Bordered Tabs -->
+                </div>
+                <!-- End Bordered Tabs -->
               </div>
             </div>
           </div>
@@ -248,7 +314,7 @@
       </section>
     </div>
   </div>
-  <script>
+  <script data-navigate-once>
     const fileInput = document.getElementById('foto_profil');
     const imagePreview = document.getElementById('foto_profil_preview');
     const deleteButton = document.getElementById('delete-image');
@@ -268,8 +334,17 @@
     });
 
     deleteButton.addEventListener('click', function() {
-      imagePreview.src = "";
+      imagePreview.src = "{{ asset('assets/Images/profil/' . auth()->user()->foto_profil) }}";
       fileInput.value = null;
     });
+  </script>
+  <script data-navigate-once>
+    var nameInput = document.getElementById('email');
+
+    function toggleFocusClass() {
+      nameInput.classList.toggle('focused');
+    }
+    nameInput.addEventListener('focus', toggleFocusClass);
+    nameInput.addEventListener('blur', toggleFocusClass);
   </script>
 </main>
